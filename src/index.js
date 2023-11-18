@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'components/GlobalStyle';
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
+import { BrowserRouter } from 'react-router-dom';
 
 const theme = {
   colors: {
@@ -19,11 +20,13 @@ const theme = {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <Provider store={store}>
+    <BrowserRouter basename="/goit-react-hw-08-phonebook">
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
           <App />
           <GlobalStyle />
-      </Provider>
-    </ThemeProvider>
+        </Provider>
+      </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

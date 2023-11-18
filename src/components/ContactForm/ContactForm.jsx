@@ -37,6 +37,7 @@ export const ContactForm = () => {
     }
 
     dispatch(addContact({ ...inputValue, createdAt: new Date() }));
+    Notify.success(`${inputValue.name} added to contacts`);
   };
 
   return (

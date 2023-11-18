@@ -6,7 +6,6 @@ export const ModernForm = styled(Form)`
   flex-direction: column;
   gap: ${p => p.theme.spacing(5)};
 
-  border: 2px solid black;
   border-radius: 5px;
   padding: ${p => p.theme.spacing(3)};
   margin-bottom: ${p => p.theme.spacing(7)};
