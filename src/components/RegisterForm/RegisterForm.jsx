@@ -36,7 +36,7 @@ export const RegisterForm = () => {
         password: '',
         confirmPassword: '',
       }}
-      // validationSchema={schema}
+      validationSchema={schema}
       onSubmit={(values, actions) => {
         const { username, email, password } = values;
         dispatch(
