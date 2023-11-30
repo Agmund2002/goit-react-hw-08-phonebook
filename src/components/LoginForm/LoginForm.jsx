@@ -3,6 +3,8 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { IoMdEye } from 'react-icons/io';
 import { IoMdEyeOff } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/operations';
 
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -11,6 +13,7 @@ const schema = Yup.object().shape({
 
 export const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -20,7 +23,7 @@ export const LoginForm = () => {
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        console.log(values);
+        dispatch(logIn(values))
         actions.resetForm();
       }}
     >
@@ -44,7 +47,7 @@ export const LoginForm = () => {
             autoComplete="current-password"
           />
           <button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
           </button>
           <ErrorMessage component="span" name="password" />
         </label>

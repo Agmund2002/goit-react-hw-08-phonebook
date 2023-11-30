@@ -9,8 +9,8 @@ import {
   ModernForm,
 } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from 'redux/selectors';
-import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operations';
 
 const phoneRegExp =
   '\\+?\\d{1,4}?[ .\\-\\s]?\\(?\\d{1,3}?\\)?[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,4}[ .\\-\\s]?\\d{1,9}';
@@ -20,7 +20,7 @@ const schema = Yup.object().shape({
     .min(1, 'Too Short!')
     .max(30, 'Too Long!')
     .required('Required'),
-  phone: Yup.string()
+  number: Yup.string()
     .min(9, 'Short phone number')
     .max(18, 'Long phone number')
     .matches(phoneRegExp, 'Phone number is not valid')
@@ -36,7 +36,7 @@ export const ContactForm = () => {
       return Notify.failure(`${inputValue.name} is already in contacts`);
     }
 
-    dispatch(addContact({ ...inputValue, createdAt: new Date() }));
+    dispatch(addContact(inputValue));
     Notify.success(`${inputValue.name} added to contacts`);
   };
 
@@ -44,7 +44,7 @@ export const ContactForm = () => {
     <Formik
       initialValues={{
         name: '',
-        phone: '',
+        number: '',
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
@@ -61,8 +61,8 @@ export const ContactForm = () => {
 
         <Label>
           Phone number
-          <ModernField type="tel" name="phone" placeholder="000-000-0000" />
-          <ModernErrorMessage component="span" name="phone" />
+          <ModernField type="tel" name="number" placeholder="000-000-0000" />
+          <ModernErrorMessage component="span" name="number" />
         </Label>
 
         <Button type="submit">Add contact</Button>

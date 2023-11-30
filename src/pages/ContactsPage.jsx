@@ -1,10 +1,13 @@
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from 'components/Filter/Filter';
-import { Message, SecondaryTitle } from 'components/individualElements/Title.styled';
+import {
+  Message,
+  SecondaryTitle,
+} from 'components/individualElements/Title.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchContacts } from 'redux/operations';
+import { fetchContacts } from 'redux/contacts/operations';
 import { useEffect } from 'react';
-import { selectError, selectIsLoading } from 'redux/selectors';
+import { selectError, selectIsLoading } from 'redux/contacts/selectors';
 import { BarLoader } from 'react-spinners';
 
 const ContactsPage = () => {

@@ -3,6 +3,8 @@ import * as Yup from 'yup';
 import { useState } from 'react';
 import { IoMdEye } from 'react-icons/io';
 import { IoMdEyeOff } from 'react-icons/io';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
 
 const passwordRegExp = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?!.* ).{8,20}$/;
 
@@ -24,6 +26,7 @@ const schema = Yup.object().shape({
 
 export const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <Formik
@@ -33,9 +36,16 @@ export const RegisterForm = () => {
         password: '',
         confirmPassword: '',
       }}
-      validationSchema={schema}
+      // validationSchema={schema}
       onSubmit={(values, actions) => {
-        console.log(values);
+        const { username, email, password } = values;
+        dispatch(
+          register({
+            name: username,
+            email,
+            password,
+          })
+        );
         actions.resetForm();
       }}
     >
@@ -44,6 +54,7 @@ export const RegisterForm = () => {
           Username
           <Field
             name="username"
+            type="text"
             autoComplete="username"
             placeholder="John Doe"
           />
@@ -69,7 +80,7 @@ export const RegisterForm = () => {
             autoComplete="off"
           />
           <button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
           </button>
           <ErrorMessage component="span" name="password" />
         </label>
@@ -82,7 +93,7 @@ export const RegisterForm = () => {
             autoComplete="off"
           />
           <button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? <IoMdEye /> : <IoMdEyeOff />}
+            {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
           </button>
           <ErrorMessage component="span" name="confirmPassword" />
         </label>
