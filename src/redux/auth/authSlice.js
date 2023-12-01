@@ -9,25 +9,36 @@ const authSlice = createSlice({
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
+    isLoading: false
   },
   extraReducers: builder => {
     builder
+      .addCase(register.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(register.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(register.rejected, () => {
+      .addCase(register.rejected, state => {
+        state.isLoading = false;
         Notify.failure(
           'Maybe an account has already been created for this email. Try using another email'
         );
       })
+      .addCase(logIn.pending, state => {
+        state.isLoading = true;
+      })
       .addCase(logIn.fulfilled, (state, action) => {
+        state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-      .addCase(logIn.rejected, () => {
+      .addCase(logIn.rejected, state => {
+        state.isLoading = false;
         Notify.failure('Incorrect login or password');
       })
       .addCase(logOut.fulfilled, state => {
