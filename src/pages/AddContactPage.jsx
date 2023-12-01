@@ -1,11 +1,14 @@
 import { ContactForm } from 'components/ContactForm/ContactForm';
-import { SecondaryTitle } from 'components/individualElements/Title.styled';
+import { Container } from 'components/Container/Container';
+import { SecondaryTitle } from 'components/individualElements/Title';
 
 const AddContactPage = () => {
   return (
     <section>
-      <SecondaryTitle>New contact</SecondaryTitle>
-      <ContactForm />
+      <Container>
+        <SecondaryTitle isVisible={false}>New contact</SecondaryTitle>
+        <ContactForm />
+      </Container>
     </section>
   );
 };

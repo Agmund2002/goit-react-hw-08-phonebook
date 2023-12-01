@@ -1,11 +1,14 @@
+import { Container } from 'components/Container/Container';
 import { RegisterForm } from 'components/RegisterForm/RegisterForm';
-import { SecondaryTitle } from 'components/individualElements/Title.styled';
+import { SecondaryTitle } from 'components/individualElements/Title';
 
 const RegisterPage = () => {
   return (
     <section>
-      <SecondaryTitle>Register</SecondaryTitle>
-      <RegisterForm />
+      <Container>
+        <SecondaryTitle isVisible={false}>Register</SecondaryTitle>
+        <RegisterForm />
+      </Container>
     </section>
   );
 };

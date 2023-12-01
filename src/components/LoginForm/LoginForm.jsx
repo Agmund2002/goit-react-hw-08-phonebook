@@ -1,10 +1,11 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { IoMdEye } from 'react-icons/io';
 import { IoMdEyeOff } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import { Label, ModernErrorMessage, ModernField, ModernForm, PassBox, ShowPassBtn } from './LoginForm.styled';
 
 const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -23,37 +24,49 @@ export const LoginForm = () => {
       }}
       validationSchema={schema}
       onSubmit={(values, actions) => {
-        dispatch(logIn(values))
+        dispatch(logIn(values));
         actions.resetForm();
       }}
     >
-      <Form>
-        <label>
+      <ModernForm>
+        <Label>
           Email
-          <Field
+          <ModernField
             name="email"
             type="email"
             autoComplete="email"
             placeholder="example@email.com"
           />
-          <ErrorMessage component="span" name="email" />
-        </label>
+          <ModernErrorMessage component="span" name="email" />
+        </Label>
 
-        <label>
+        <Label>
           Password
-          <Field
-            name="password"
-            type={showPassword ? 'text' : 'password'}
-            autoComplete="current-password"
-          />
-          <button type="button" onClick={() => setShowPassword(!showPassword)}>
-            {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
-          </button>
-          <ErrorMessage component="span" name="password" />
-        </label>
+          <PassBox>
+            <ModernField
+              className="password"
+              name="password"
+              type={showPassword ? 'text' : 'password'}
+              autoComplete="off"
+            />
+            <ShowPassBtn
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <IoMdEyeOff color="rgba(153,153,153,0.8)" />
+              ) : (
+                <IoMdEye color="rgba(153,153,153,0.8)" />
+              )}
+            </ShowPassBtn>
+          </PassBox>
+          <ModernErrorMessage component="span" name="password" />
+        </Label>
 
-        <button type="submit">Login</button>
-      </Form>
+        <button className="button" type="submit">
+          Login
+        </button>
+      </ModernForm>
     </Formik>
   );
 };

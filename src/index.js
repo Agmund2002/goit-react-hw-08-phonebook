@@ -10,10 +10,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 const theme = {
   colors: {
-    main: '#cfc6c6',
-    txt: '#262626',
-    accent: '#455af7',
-    negative: '#e60000',
+    greyTxt: '#828282',
+    mainBorder: 'rgba(153,153,153,0.3)',
+    active: '#19cf68',
+    error: '#de1d1d',
   },
   spacing: value => `${value * 4}px`,
   animation: '250ms cubic-bezier(0.4, 0, 0.2, 1);',

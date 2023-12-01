@@ -9,11 +9,12 @@ export const Label = styled.label`
   font-size: 18px;
 
   padding-bottom: ${p => p.theme.spacing(5)};
+  margin-top: ${p => p.theme.spacing(1)};
 `;
 
 export const Input = styled.input`
   font-size: 16px;
-  border: 1px solid ${p => p.theme.colors.main};
+  border: 1px solid ${p => p.theme.colors.mainBorder};
   padding: ${p => p.theme.spacing(1)} ${p => p.theme.spacing(3)};
   border-radius: 5px;
   min-width: 200px;

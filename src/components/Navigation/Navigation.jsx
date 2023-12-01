@@ -1,25 +1,28 @@
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { selectIsLoggedIn } from 'redux/auth/selectors';
+import { Header, Nav, NavigationLink } from './Navigation.styled';
+import { MainTitle } from 'components/individualElements/Title';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  return (
-    <header>
-      {isLoggedIn ? (
-        <>
-          <NavLink to="/contacts">Contacts</NavLink>
-          <NavLink to="/new">New contact</NavLink>
-          <UserMenu />
-        </>
-      ) : (
-        <>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/register">Register</NavLink>
-        </>
-      )}
-    </header>
+  return isLoggedIn ? (
+    <Header>
+      <MainTitle>Phonebook</MainTitle>
+      <Nav>
+        <NavigationLink to="/contacts">Contacts</NavigationLink>
+        <NavigationLink to="/new">New contact</NavigationLink>
+      </Nav>
+      <UserMenu />
+    </Header>
+  ) : (
+    <Header className="right-position">
+      <MainTitle>Phonebook</MainTitle>
+      <Nav>
+        <NavigationLink to="/login">Login</NavigationLink>
+        <NavigationLink to="/register">Register</NavigationLink>
+      </Nav>
+    </Header>
   );
 };

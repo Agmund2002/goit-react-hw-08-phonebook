@@ -10,7 +10,7 @@ export const Contact = ({ data: { id, name, number } }) => {
       <span>{name}:</span>
       <span>{number}</span>
       <Button type="button" onClick={() => dispatch(deleteContact(id))}>
-        <Icon />
+        <Icon size='16px' />
       </Button>
     </>
   );

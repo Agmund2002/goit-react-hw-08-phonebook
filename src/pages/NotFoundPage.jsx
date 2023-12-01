@@ -1,9 +1,14 @@
-import { SecondaryTitle } from 'components/individualElements/Title.styled';
+import { Container } from 'components/Container/Container';
+import { NotFound } from 'components/NotFound/NotFound';
+import { SecondaryTitle } from 'components/individualElements/Title';
 
 const NotFoundPage = () => {
   return (
     <section>
-      <SecondaryTitle>Not found</SecondaryTitle>
+      <Container>
+        <SecondaryTitle isVisible={false}>Not found</SecondaryTitle>
+        <NotFound />
+      </Container>
     </section>
   );
 };

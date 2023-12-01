@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -16,10 +17,18 @@ const authSlice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
+      .addCase(register.rejected, () => {
+        Notify.failure(
+          'Maybe an account has already been created for this email. Try using another email'
+        );
+      })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+      })
+      .addCase(logIn.rejected, () => {
+        Notify.failure('Incorrect login or password');
       })
       .addCase(logOut.fulfilled, state => {
         state.user = { name: null, email: null };

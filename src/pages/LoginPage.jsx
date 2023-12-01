@@ -1,11 +1,14 @@
+import { Container } from 'components/Container/Container';
 import { LoginForm } from 'components/LoginForm/LoginForm';
-import { SecondaryTitle } from 'components/individualElements/Title.styled';
+import { SecondaryTitle } from 'components/individualElements/Title';
 
 const LoginPage = () => {
   return (
     <section>
-      <SecondaryTitle>Login</SecondaryTitle>
-      <LoginForm />
+      <Container>
+        <SecondaryTitle isVisible={false}>Login</SecondaryTitle>
+        <LoginForm />
+      </Container>
     </section>
   );
 };

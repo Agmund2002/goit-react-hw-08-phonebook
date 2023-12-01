@@ -65,7 +65,7 @@ export const ContactForm = () => {
           <ModernErrorMessage component="span" name="number" />
         </Label>
 
-        <Button type="submit">Add contact</Button>
+        <Button className='button' type="submit">Add contact</Button>
       </ModernForm>
     </Formik>
   );
